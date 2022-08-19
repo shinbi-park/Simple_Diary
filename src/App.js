@@ -43,10 +43,16 @@ function App() {
     dataId.current += 1;
     setData([newItem, ...data]);
   };
+
+  const onDelete = (targetId) => {
+    setData(data.filter((it) => it.id !== targetId));
+  };
+  // App컴포넌트에서 직접 onDelete를 호출하는 것이 아니기 때문에 매개변수 targetId를 전달받는다.
+
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList diaryList={data} />
+      <DiaryList diaryList={data} onDelete={onDelete} />
     </div>
   );
 }
